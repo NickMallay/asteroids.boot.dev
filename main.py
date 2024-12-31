@@ -38,10 +38,14 @@ def main():
             item.draw(screen)
         for item in updatable:
             item.update(dt)
-            for roid in asteroids:
-                if roid.check_collisions(player):
-                    print("Game over!")
-                    return
+        for roid in asteroids:
+            if roid.check_collisions(player):
+                print("Game over!")
+                return
+        for roid in asteroids:
+            for shot in shot_group:
+                if shot.check_collisions(roid):
+                    roid.split()
                 
 
         pygame.display.flip()

@@ -25,3 +25,4 @@ class CircleShape(pygame.sprite.Sprite):
         distance = self.position.distance_to(shape.position)
         return self.radius + shape.radius >= distance
         
+                                        
