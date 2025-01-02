@@ -82,6 +82,9 @@ class Player(CircleShape):
             forward = pygame.Vector2(0, 1).rotate(self.rotation)
             shot.velocity = forward * PLAYER_SHOOT_SPEED
         self.timer -= dt
-        print(self.timer)
         if self.timer < 0:
             self.timer = 0
+    
+    def add_score(self):
+        self.score += 100
+    

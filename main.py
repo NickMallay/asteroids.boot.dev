@@ -45,7 +45,7 @@ def main():
         for roid in asteroids:
             for shot in shot_group:
                 if shot.check_collisions(roid):
-                    roid.split()
+                    roid.split(player)
                     shot.kill()
                 
 
