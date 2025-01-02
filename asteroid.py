@@ -26,6 +26,6 @@ class Asteroid(CircleShape):
         child_1 = Asteroid(self.position.x, self.position.y, self.radius - ASTEROID_MIN_RADIUS)
         child_2 = Asteroid(self.position.x, self.position.y, self.radius - ASTEROID_MIN_RADIUS)
         
-        child_1.velocity = new_velocity_1 * 1.2
-        child_2.velocity = new_velocity_2 * 1.2
+        child_1.velocity = new_velocity_1 * random.uniform(1.3,2.5)
+        child_2.velocity = new_velocity_2 * random.uniform(1.3,2.5)
 
