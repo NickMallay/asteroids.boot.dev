@@ -21,6 +21,10 @@ def main():
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # Initialize font for the score
+    pygame.font.init()
+    font = pygame.font.Font(None, 36)  # Default font with size 36
+
     Asteroid.containers = (asteroids, updatable, drawable)
     Player.containers = (updatable, drawable)
     AsteroidField.containers = (updatable)
@@ -47,7 +51,9 @@ def main():
                 if shot.check_collisions(roid):
                     roid.split(player)
                     shot.kill()
-                
+                # Render score
+        score_text = font.render(f"Score: {player.score}", True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))  # Display score at the top-left corner        
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000

@@ -17,6 +17,8 @@ class Asteroid(CircleShape):
         
         
         if self.radius <= ASTEROID_MIN_RADIUS:
+            player.add_score()
+            print(player.score)
             return
         
         angle_change = random.uniform(20,50)
