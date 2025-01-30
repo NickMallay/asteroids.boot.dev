@@ -86,5 +86,5 @@ class Player(CircleShape):
             self.timer = 0
     
     def add_score(self):
-        self.score += 100
+        self.score += 150
     
