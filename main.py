@@ -5,6 +5,29 @@ from asteroid import *
 from asteroidfield import *
 from shot import *
 
+def game_over_screen(screen, font):
+    screen.fill("black")
+    game_over_text = font.render("You Died", True, (255, 0, 0))
+    restart_text = font.render("Press R to Restart or Q to Quit", True, (255, 255, 255))
+
+    screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 20))
+    screen.blit(restart_text, (SCREEN_WIDTH // 2 - 140, SCREEN_HEIGHT // 2 + 20))
+
+    pygame.display.flip()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    return True
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    exit()
+
+
 def main():
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -45,6 +68,8 @@ def main():
         for roid in asteroids:
             if roid.check_collisions(player):
                 print("Game over!")
+                if game_over_screen(screen, font):  # Restart or Quit
+                        break
                 return
         for roid in asteroids:
             for shot in shot_group:
