@@ -12,6 +12,7 @@ class Player(CircleShape):
         self.p_pressed = False
         self.o_pressed = False
         self.score = 0
+        self.color = (255, 255, 255)
 
 
 
@@ -24,7 +25,7 @@ class Player(CircleShape):
         return [a, b, c]
     
     def draw(self, screen):
-        pygame.draw.polygon(screen, "red", self.triangle(), 2)
+        pygame.draw.polygon(screen, self.color, self.triangle(), 2)
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
@@ -45,6 +46,9 @@ class Player(CircleShape):
             self.move(-dt)
         if keys[pygame.K_SPACE]:
             self.shoot(dt)
+        
+        if keys[pygame.K_c]:
+            self.change_color()
 
         if keys[pygame.K_p]:
             if not self.p_pressed:
@@ -87,4 +91,17 @@ class Player(CircleShape):
     
     def add_score(self):
         self.score += 150
-    
+
+    def change_color(self):
+        colors = [
+            (255, 0, 0),   # Red
+            (0, 255, 0),   # Green
+            (0, 0, 255),   # Blue
+            (255, 255, 0), # Yellow
+            (255, 165, 0), # Orange
+            (255, 255, 255) # White
+        ]
+
+        current_index = colors.index(self.color) if self.color in colors else 0
+        self.color = colors[(current_index + 1) % len(colors)]  # Cycle to the next color
+        print(f"Player color changed to: {self.color}")  # Debug output
